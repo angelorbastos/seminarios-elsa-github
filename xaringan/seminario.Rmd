@@ -31,18 +31,6 @@ class: center, middle, inverse, title-slide
 ```{r prep, include=FALSE}
 # Opções do knitr/rmarkdown/xaringan:
 options(htmltools.dir.version = FALSE)
-
-# Libraries:
-ler_libs <- function(packages){
-  instalar <- packages[!(packages %in% installed.packages()[, "Package"])]
-  
-  if(length(instalar) > 0){
-    install.packages(pkgs = instalar, dependencies = TRUE)
-  }
-  invisible(sapply(packages, require, character.only = TRUE))
-}
-
-ler_libs(packages = c("SASmarkdown"))
 ```
 
 # Introdução
@@ -402,7 +390,7 @@ class: img-page
 - Retornando ao debate sobre ciências abertas, o Github apresenta alguns pontos importantíssimos, como:
   + Preenchimento dos **4 princípios FAIR**, pois os programas e dados neste são facilmente localizáveis, acessíveis, interoperáveis e reutilizáveis;
   + Possibilidade de hospedagem de um *site* e/ou plataforma para acesso às sintaxes (e possivelmente a dados) do Projeto ELSA;
-  + Permmite a abertura gradual dos materiais e dados do ELSA ao público em geral, disponibilizando somente o quê estamos seguros de compartilhar sem comprometer o estudo ou a privacidade e segurança de seus participantes.
+  + Permite a abertura gradual dos materiais e dados do ELSA ao público em geral, disponibilizando somente o quê estamos seguros de compartilhar sem comprometer o estudo ou a privacidade e segurança de seus participantes.
 
 ---
 
