@@ -1,6 +1,12 @@
 /* Palheta de cores do logo do ELSA (de acordo com a foto do Facebook):                                    */
 /* #6788cb (azul), #fbfffd (branco), #aaaaaa (cinza claro), #848283 (cinza médio), #6b6766 (cinza escuro). */
 
+/* Alterando a fonte do corpo dos slides: */
+body {
+  font-family: 'Biryani', serif;
+  color: #3B3B3B;
+}
+
 /* Mudando cor do texto e adicionando borda abaixo dos headers dos slides: */
 h1 {
   position: relative !important;
@@ -8,7 +14,7 @@ h1 {
   border-bottom: 1px solid #567eb9;
 }
 
-/* Adicionando logo do IME após todos títulos:  */
+/* Adicionando logo do ELSA após todos títulos:  */
 h1::after {
   margin-left: -100px;
   position: absolute;
@@ -44,11 +50,6 @@ h1::after {
   /* Alterando a área utilizada: */
   display: block;
   height: 100%;
-  
-  /* Alterando o fundo: */
-  background: linear-gradient(-45deg, #48abff, #52a4f5, #599dec, #5f97e2, #6390d8, #5c84c9, #5678bb, #4f6cac, #3d5795, #2b447f, #183169, #001f54);
-  background-size: 400% 400%;
-  animation: gradientBG 7.5s ease infinite;
 }
 
 /* Definindo a animação que usei no fundo da capa: */
@@ -81,28 +82,31 @@ h1::after {
   transform: translateX(-50%);
 }
 
-/* Alterando a fonte do corpo dos slides: */
-body {
-  font-family: 'Biryani', serif;
-  color: #001C30;
-}
-
-/* Alterando o slide de Git-Github: */
-.remark-slide-container .git-github {
+/* Modificando o fundo da capa e das páginas de imagens entre seções: */
+.remark-slide-container .title-slide, .remark-slide-container .img-page{
   background: linear-gradient(-45deg, #48abff, #52a4f5, #599dec, #5f97e2, #6390d8, #5c84c9, #5678bb, #4f6cac, #3d5795, #2b447f, #183169, #001f54);
   background-size: 400% 400%;
   animation: gradientBG 7.5s ease infinite;
 }
 
-#img-git {
+/* Alterando estilos para as posições de cada imagem nas páginas de imagens entre seções: */
+#img-center {
   position: absolute;
-  left: 15%;
-  top: 25%;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
 }
 
-#img-github {
+#img-left {
   position: absolute;
-  right: 15%;
-  top: 25%;
+  top: 50%;
+  left: 30%;
+  transform:translate(-50%, -50%);
 }
 
+#img-right {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform:translate(-50%, -50%);
+}

@@ -19,7 +19,7 @@ class: center, middle, inverse, title-slide
 <h1 id="h1-capa" style = "font-family: Abel; top: 15%;">Projetos e Fluxo de Trabalho:<br>Git e Github</h1>
 
 <div id="texto-medio">
-  <h2 style = "font-family: Abel">Por: Angelo Rosa</h2>
+  <h2 style = "font-family: Abel">Por Angelo Rosa</h2>
 </div>
 
 <div id="texto-baixo">
@@ -42,118 +42,399 @@ ler_libs <- function(packages){
   invisible(sapply(packages, require, character.only = TRUE))
 }
 
-ler_libs(packages = c('plotly', 'DT'))
-
-# Bases de dados:
-
+ler_libs(packages = c("SASmarkdown"))
 ```
 
 # Introdução
 
-Neste seminário, vamos discutir:
+Neste seminário, vamos debater sobre:
 
 - Gerenciamento dos códigos e atividades da equipe;
 
-- Uso de Git e Github e como se integram com SAS, R e Slack;
+- Git e Github;
+  + O que são e como funcionam;
+  + Interface e comandos;
+  + Integração com SAS, R e Slack;
 
-- Possíveis implementações das ferramentas na **nossa** equipe.
-
----
-
-# Problematização
-
-- Em qualquer projeto em equipe que envolva programação, pode ser difícil administrar os códigos e documentar as alterações;
-
-- Além disso, ao adotarmos funções criadas pela equipe, o controle de versionamento destas funções pode ser prolemático;
-
-- **Git** e **Github** são ferramentas que auxiliam tanto nestas questões quanto no gerenciamento da equipe;
-
-- Nos próximos *slides*, vamos contextualizar alguns problemas que estas ferramentas podem resolver.
+- Possíveis implementações das ferramentas na **nossa** equipe:
+  + Adicionar o Github no nosso fluxo de trabalho;
+  + Praticar ciência aberta com o Github, tanto para **obter** soluções quanto para as **compartilhar**;
+  + Sistemas de controle de versionamento aplicados no *backup* dos dados do `Y:`.
 
 ---
 
-# Programação Colaborativa
+# Contextualização
+
+Em qualquer projeto em equipe que envolva programação, pode ser difícil administrar os códigos, documentar as alterações e gerenciar as atividades a realizar;
+  - **Git** e **Github** são ferramentas que auxiliam nestas questões.
+
+Sobre as modificações nos códigos, há quatro questões principais que o **Git** e o **Github** nos ajudam a gerenciar:
+  - **Quem** realizou cada modificação;
+  - **Quando** cada modificação foi implementada;
+  - **Aonde** (em qual código ou quais linhas) estão as alterações;
+  - **Por quê** houveram alterações.
+  
+Nos próximos *slides*, vamos contextualizar alguns problemas que estas ferramentas podem resolver.
+
+---
+
+class: img-page
+
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Programação Colaborativa</h1>
+
+<i id = "img-center"><img src = "images/colab-prog.png" height = 350px width = 350px></i>
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/colab-prog.png" height = 40px width = 40px></a> Programação Colaborativa</h1>
 
 - No projeto, é comum que várias pessoas trabalhem em um mesmo código, seja **simultaneamente** ou em **diferentes épocas**;
 
 - Adotamos algumas práticas ao trabalhar em códigos alheios, como:
-  + Criar um programa novo;
-  + Documentar as alterações e registrar quem realizou;
+  + Criar um programa novo para não sobrescrever os códigos;
+  + Comentar e documentar as alterações, registrando quem/quando realizou modificações e por quê foram realizadas.
 
 - Mesmo assim, é comum termos problemas, principalmente quando o trabalho é simultâneo:
   + Corrigir uma função significa modificar a chamada dela em todos os programas;
-  + Com duas pessoas trabalhando no mesmo código, é fácil de confundir as correções.
+  + Com várias pessoas trabalhando no mesmo código, é fácil de misturar e até perder as correções.
 
 ---
 
-# Controle de Versionamento
+class: img-page
 
-- Em geral, salvamos uma nova versão toda vez que fazemos alguma modificação grande num programa;
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Controle de Versionamento</h1>
 
-- Hoje, adotamos um *header* com a data de última modificação e um `_&dataextra.` ao final dos nomes dos programas;
+<i id = "img-center"><img src = "images/version-control.png" height = 350px width = 350px></i>
 
-- Cada alteração em geral é descrita em um comentário dentro do programa;
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/version-control.png" height = 40px width = 40px></a> Controle de Versionamento</h1>
+
+- Dentre outras práticas, atualmente fazemos controle de versionamento quando:
+  + Criamos uma cópia do programa a modificar;
+  + Adotamos um *header* com informações dentro dos programas e um `_&dataextra.` ao final de seus nomes;
+  + Descrevemos alterações em comentários dentro dos programas.
 
 - São métodos bons, mas temos ainda alguns problemas, por exemplo:
-  + Comparar uma versão com outra é muito trabalhoso;
-  + Muitas alterações não descrevem quem realizou ou quando.
+  + Comparar uma versão com outra é trabalhoso;
+  + Muitas documentações não respondem as quatro questões básicas.
 
 ---
 
-# Gerenciamento da Equipe
+class: img-page
+
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Gerenciamento da Equipe</h1>
+
+<i id = "img-center"><img src = "images/team-management.png" height = 350px width = 350px></i>
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/team-management.png" height = 40px width = 40px></a> Gerenciamento da Equipe</h1>
 
 O **Github** também pode nos auxiliar a administrar as atividades da equipe:
 
 - Possui quadro *Kanban* para organização de tarefas;
-- Mantém histórico de modificações;
+
+- Mantém histórico de modificações **vinculado às tarefas**;
+
 - Fornece, para cada repositório, *insights* sobre as contribuições de cada pessoa, *branching* e mais;
+
 - Tem integração com o **SAS**, o **RStudio** e o **Slack** (discutiremos depois).
 
 ---
 
-class: git-github
+class: img-page
 
-<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Git e Github</h1>
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Backup de Dados</h1>
 
-<i id = "img-git"><img src = "images/git-logo.png" height = 300px width = 300px></i>
-<i id = "img-github"><img src = "images/github-logo.png" height = 300px width = 300px></i>
-
----
-
-# Git
-
-
+<i id = "img-center"><img src = "images/backup.png" height = 350px width = 350px></i>
 
 ---
 
-# Github
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/backup.png" height = 40px width = 40px></a> Backup de Dados</h1>
+
+- Outro possível uso da linguagem **Git** é no gerenciamento de *backups* dos dados do projeto. Utilizando controle de versionamento, podemos:
+  + Fazer *backup* somente dos arquivos que foram alterados, economizando tempo e memória;
+  + Documentar as alterações (com documentos padrão ou comentários).
+
+- Há alguns projetos *open source* no **Github** que auxiliam na criação do sistema Git **local** para *backup* das bases de dados;
+
+- Mas isso é assunto para outro seminário...
 
 ---
 
-# Palavras-chave
+class: img-page
+
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Sobre Git e Github</h1>
+
+<i id = "img-left"><img src = "images/git-logo.png" height = 300px width = 300px></i>
+<i id = "img-right"><img src = "images/github-logo.png" height = 300px width = 300px></i>
 
 ---
 
-# Comandos
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://git-scm.com/"><img src = "images/git-logo.png" height = 40px width = 40px></a> Git</h1>
+
+**Git** é um sistema de **controle de versionamento distribuído (CVD)** utilizado para rastrear mudanças em códigos-fonte:
+  - **Distribuído** porque o conjunto de arquivos e histórico de mudanças está disponível para todos usuários da rede;
+  - Foi desenvolvido para coordenar o trabalho entre programadores, mas pode ser utilizado para rastrear mudanças em quaisquer conjuntos de arquivos.
+  
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://git-scm.com/"><img src = "images/git-logo.png" height = 40px width = 40px></a> Git e Outros CVDs</h1>
+
+A maior diferença entre Git e outros sistemas de CVD é a forma de pensar nos dados na hora que os enviamos ao sistema:
+  - Sistemas de CVD, em geral, armazenam a informação das alterações como uma lista de alterações **para cada arquivo**;
+  - Git armazena a informação das alterações como uma lista **geral** de todas modificações que ocorreram;
+    + Claro, caso algum arquivo não tenha sido alterado, é salva referência ao arquivo antigo para economizar espaço e tempo.
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://git-scm.com/"><img src = "images/git-logo.png" height = 40px width = 40px></a> Fluxo de Dados em Outros CVDs</h1>
+
+<a style = "position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><img src = "images/cvs-dataflow.png"></a>
+
+---
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://git-scm.com/"><img src = "images/git-logo.png" height = 40px width = 40px></a> Fluxo de Dados no Git</h1>
+
+<a style = "position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><img src = "images/git-dataflow.png"></a>
 
 ---
 
-# Github para Slack
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://git-scm.com/"><img src = "images/git-logo.png" height = 40px width = 40px></a> Arquivos .gitignore</h1>
+
+- Arquivos `.gitignore` permitem ignorar determinados arquivos ou extensões ao adicionar modificações e enviar arquivos a um repositório.
+
+- Para utilizá-los, basta criar um arquivo chamado ".gitignore" na pasta do repositório e preenchê-lo. A sintaxe é bem simples:
+  + `*.[extensão]` ignora todos arquivos com certa extensão;
+  + `[diretório]/` ignora todos arquivos em certo diretório; 
+  + `#` no início de uma linha especifica um comentário no arquivo;
+  + Adicionar um dos ***globs*** acima por linha e pronto.
+  
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://github.com/"><img src = "images/github-logo.png" height = 40px width = 40px></a> Github</h1>
+
+**Github** é uma plataforma para centralização do controle de versionamento de um projeto, que também facilita sua administração e documentação.
+
+Alguns pontos sobre a plataforma:
+  - Sua interface facilita a utilização de muitas ferramentas do Git;
+  - Armazenamento em nuvem facilita a distribuição das informações entre os membros da equipe;
+  - Permite criação de repositórios **públicos** e **privados**, sendo que tem funcionalidades a mais para empresas/projetos/instituições;
+  - Tem integração com outras ferramentas úteis (como RStudio e Slack);
+  - Disponibiliza, no ***Marketplace***, outras ferramentas para revisão, teste e publicação de códigos e muito mais.
 
 ---
 
-# Git no SAS
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://github.com/"><img src = "images/github-logo.png" height = 40px width = 40px></a> Palavras-Chave </h1>
+
+Alguns termos que vamos utilizar muito daqui pra frente:
+- **Repositório** é a pasta com todos arquivos e histórico de um projeto;
+- Dar ***clone*** é **baixar** um repositório;
+  + Dar ***fork*** é **copiar** um repositório para uma conta pessoal no Github.
+- Cada ***branch*** é uma versão paralela do repositório, contida nele mas que não afeta a versão principal;
+- ***Merge*** é o processo de unir duas *branches*;
+- ***Pull*** é **puxar** os dados de alguma *branch* e **uní-los** com os locais;
+  + ***Fetch*** é puxar **sem dar o** ***merge***;
+- ***Commit*** é **registrar no Git** as alterações realizadas no repositório até o momento;
+- ***Push*** é **enviar** as informações locais à *branch* no Github.
 
 ---
 
-# Git no RStudio
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://github.com/"><img src = "images/github-logo.png" height = 40px width = 40px></a> Comandos</h1>
+
+Alguns comandos importantes (na ordem em que geralmente os utilizamos):
+  - `git clone [url]` baixa um repositório;
+  - `git branch` cria uma nova branch e `git checkout [branch]` vai para ela;
+    + `git checkout -b [branch]` cria a branch e já vai pra ela.
+  - `git add -A` adiciona todas modificações realizadas à lista do que vamos dar **commit**;
+    + `git commit -m "comentário"` salva as modificações realizadas;
+  - `git push origin [branch]` envia as modificações ao repositório central (no Github);
+
+**Observação:** Os colchetes são as áreas a mudar no texto. **Não** incluí-los.
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://github.com/"><img src = "images/github-logo.png" height = 40px width = 40px></a> Repositórios no Github</h1>
+
+Repositórios no Github podem ser **públicos** ou **privados**:
+  - Qualquer pessoa pode visualizar os arquivos e enviar solicitações de modificação (criar *issues* e *pull-requests*) de repositórios públicos;
+  - Para repositórios privados, somente os membros conseguem.
+  
+Sobre os tipos de contas:
+  - Tanto as gratuitas quanto as *pro*, *team* e *enterprise* podem ter repositórios públicos e privados ilimitados;
+  - Contas públicas só podem ter **3 colaboradores** por repositório privado, é ilimitado para as outras;
+  - O limite de tempo de uso (*download* e *upload* de arquivos) por mês e a lista de serviços oferecidos aumentam com os planos;
+  - Mesmo o plano mais caro é disponibilizado **gratuitamente** para instituições educacionais participando do programa *GitHub Education*.
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://github.com/"><img src = "images/github-logo.png" height = 40px width = 40px></a> Documentação no Github</h1>
+
+- Além dos comentários adicionados em cada *commit* e cada *merge*, no Github pode-se adicionar arquivos `README.md` em cada pasta do repositório e este arquivo será renderizado na página da pasta;
+  + Então, tanto a documentação de **cada modificação** quanto a documentação **geral da atividade** podem ser gerenciadas no Github.
+
+- Os arquivos `README.md` são escritos utilizando a sintaxe Markdown, que foi desenvolvida para facilitar a confecção de documentos simples em HTML;
+  + É similar ao RMarkdown mas sem o R (dã);
+  + Adicionei o *link* a uma ***cheatsheet*** desta linguagem, bem como de Git, nas referências.
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://github.com/"><img src = "images/github-logo.png" height = 40px width = 40px></a> Git Flow</h1>
+
+Um fluxo de trabalho com Git/Github muito adotado é o denominado *Git Flow*, desenvolvido por Vincent Driessen e exemplificado abaixo:
+
+<a style = "position: absolute; top: 62.5%; left: 50%; transform: translate(-50%, -50%);"><img src = "images/git-flow.png"></a>
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);" href = "https://github.com/"><img src = "images/github-logo.png" height = 40px width = 40px></a> Git Flow</h1>
+
+Resumindo em (**muitas**) palavras:
+  - Em cada repositório, cria-se duas *branches*: ***master*** e ***dev***;
+    + A *master* é o histórico oficial de distribuições da atividade;
+    + A *dev* serve como uma *branch* de integração das modificações;
+  - Cada vez que algum membro for implementar algo no código, ele cria uma *branch* a partir do ***dev***;
+    + Estas *branches* são chamadas de *features* e **não** devem interagir com a *master*;
+    + Ao invés, deve sempre ser realizado *merge* com a *dev*;
+    + Na *dev*, cria-se uma *release* para unir tudo antes de mandar para a *master*.
+  - Para distribuição, une-se a *dev* finalizada com a *master*;
+  - Caso hajam problemas na *master*, cria-se uma *hotfix*;
+    + Após solucionar, une-se a *hotfix* tanto na *master* quanto na *dev*.
+
+---
+
+class: img-page
+
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Git no SAS</h1>
+
+<i id = "img-left"><img src = "images/git-logo.png" height = 300px width = 300px></i>
+<i id = "img-right"><img src = "images/sas-logo.png" height = 183px width = 300px></i>
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/sas-logo.png" height = 40px width = 76px></a> Git no SAS</h1>
+
+Após instalar o Git (pelo [site oficial](https://git-scm.com/)), há duas opções para utilizá-lo no contexto de programação em SAS:
+- Na versão **9.4M6** do SAS, foram adicionadas funções iniciando em `GITFN_` aos *data-steps* do SAS, permitindo a utilização do Git diretamente.
+  + Requer que a gente realize *upgrade* para a versão mais recente.
+- Mesmo sem a versão mais recente do SAS, podemos utilizar o Git pelo **Git Bash** (terminal de Git que vem instalado por padrão);
+  + Este método não é muito diferente da utilização no RStudio;
+  + A sintaxe é simples o suficiente pra incorporarmos no fluxo de trabalho;
+  + Podemos escrever nossas próprias *macros* em SAS para chamar o Git Bash e rodar determinados comandos, se for o caso.
+- **Exemplo do Git Bash**.
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/sas-logo.png" height = 40px width = 76px></a> Git no SAS - Exemplo</h1>
+
+No código em SAS abaixo, estaríamos clonando um repositório do Github a um diretório local:
+
+```{r, eval = FALSE}
+data _null_;
+   version = gitfn_version();
+   put version=;             
+ 
+   rc = gitfn_clone("https://github.com/sascommunities/sas-dummy-blog/",
+                    "c:\Projects\sas-dummy-blog");
+   put rc=;
+run;
+```
+
+---
+
+class: img-page
+
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Git no RStudio</h1>
+
+<i id = "img-left"><img src = "images/git-logo.png" height = 300px width = 300px></i>
+<i id = "img-right"><img src = "images/rstudio-logo.png" height = 200px width = 200px></i>
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/rstudio-logo.png" height = 40px width = 40px></a> Git no RStudio</h1>
+
+- A utilização do Git no RStudio só requer os passos abaixo:
+  + Instalar o Git (pelo [site oficial](https://git-scm.com/));
+  + No RStudio clicar em `Tools - Global Options... - Git/SVN` e selecionar o executável no Git;
+  + Então, reiniciar o RStudio e deve estar funcionando.
+- Utiliza-se o **terminal** do RStudio (localizado no mesmo painel que o **console**) para rodar comandos do Git;
+  + É por aqui que vamos interagir com os arquivos no Github.
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/rstudio-logo.png" height = 40px width = 40px></a> Git no RStudio - Exemplo</h1>
+
+- Para clonar um repositório do Github pelo RStudio, basta clicar no ícone à direita superior do RStudio e em seguida em `New Project... - Version Control - Git`, então digitar a URL do repositório.
+
+- **Exemplo no RStudio**:
+
+<a style = "position: absolute; top: 62.5%; left: 50%; transform: translate(-50%, -50%);"><img src = "images/rstudio-clone.png"></a>
+
+---
+
+class: img-page
+
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Github no Slack</h1>
+
+<i id = "img-left"><img src = "images/github-logo.png" height = 300px width = 300px></i>
+<i id = "img-right"><img src = "images/slack-logo.png" height = 200px width = 200px></i>
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/slack-logo.png" height = 40px width = 40px></a> Github no Slack</h1>
+
+Para os planos pagos do Github, é possível utilizar o aplicativo **Github for Slack**:
+  + Permite obter notificações sobre os eventos selecionados, similar ao modo como o Asana faz;
+  + Acredito que seja uma opção somente caso já tenhamos optado por pagar pelo Github;
+  + Achei válido mencionar para enfatizar que as ferramentas que **já utilizamos** podem incorporar o Github também.
+  
+---
+
+class: img-page
+
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Github e Ciências Abertas</h1>
+
+<i id = "img-center"><img src = "images/share-science.png" height = 350px width = 350px></i>
+
+---
+
+<h1><a style = "top: 50%; left: 0; transform: translate(-50%, -50%);"><img src = "images/share-science.png" height = 40px width = 40px></a> Github e Ciências Abertas</h1>
+
+- Retornando ao debate sobre ciências abertas, o Github apresenta alguns pontos importantíssimos, como:
+  + Preenchimento dos **4 princípios FAIR**, pois os programas e dados neste são facilmente localizáveis, acessíveis, interoperáveis e reutilizáveis;
+  + Possibilidade de hospedagem de um *site* e/ou plataforma para acesso às sintaxes (e possivelmente a dados) do Projeto ELSA;
+  + Permmite a abertura gradual dos materiais e dados do ELSA ao público em geral, disponibilizando somente o quê estamos seguros de compartilhar sem comprometer o estudo ou a privacidade e segurança de seus participantes.
+
+---
+
+# Considerações Finais
+
+- **Sugestão:** Há muitas utilidades para Git/Github na equipe, então é bom irmos inserindo as funcionalidades no nosso fluxo de trabalho pouco a pouco;
+  + Um bom primeiro passo é criar um repositório do ELSA e começar a organizar algumas atividades colaborativas lá.
+
+- Apesar da apresentação longa, houveram muitos conceitos que não couberam e recomendo tentarem aprender mais sobre, vale a pena!
+  + Deixei alguns materiais nas referências que podem ser úteis.
 
 ---
 
 # Agradecimentos
 
+Agradeço ao **prof. Rodrigo** pela sugestão e apoio à realização do seminário e ao **Fernandinho** (que infelizmente não pôde comparecer) por ter revisado comigo e sugerido boas adições à apresentação.
+- E a **vocês todos**, que são uns amados me escutando por 300h.
+
+<div style = "position: absolute; font-weight: bold; bottom: 0; left: 50%; transform: translate(-50%, -50%); font-size: 32px; text-align: center;">Muito obrigado pela atenção!</div>
+
 ---
 
-# Referências
+# Referências e Links Úteis
 
-- Git no SAS: [Using built-in Git operations in SAS](https://blogs.sas.com/content/sasdummy/2019/01/17/git-in-sas/)
+- O quê é o **Git**: [Getting Started - What is git?](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F)
+- Guia oficial do **Github**: [Git Handbook](https://guides.github.com/introduction/git-handbook/)
+- Outro guia prático de **Git**: [git - guia prático](https://rogerdudler.github.io/git-guide/index.pt_BR.html)
+- *Cheatsheet* de **Git**: [Git Cheatsheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
+- *Cheatsheet* de **Markdown**: [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+- Sobre o **Git Flow**: [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+- **Git** no **SAS**: [Using built-in Git operations in SAS](https://blogs.sas.com/content/sasdummy/2019/01/17/git-in-sas/)
+- **Git** no **RStudio**: [RStudio - Version Control with Git and SVN](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
+- **Github** no **Slack**: [GitHub para Slack](https://slack.com/intl/pt-pt/help/articles/232289568-github-para-slack)
+- Seminário sobre Ciências Abertas: [Ciência Aberta no ELSA-Brasil](https://github.com/rdosreis/Seminarios-Estat-ELSA/blob/master/Open_Sci/Open_Sci.pdf)
+- Pacote de ícones utilizado: [Design Thinking Icon Pack](flaticon.com/packs/design-thinking-19)
