@@ -1,0 +1,108 @@
+/* Palheta de cores do logo do ELSA (de acordo com a foto do Facebook):                                    */
+/* #6788cb (azul), #fbfffd (branco), #aaaaaa (cinza claro), #848283 (cinza médio), #6b6766 (cinza escuro). */
+
+/* Mudando cor do texto e adicionando borda abaixo dos headers dos slides: */
+h1 {
+  position: relative !important;
+  color: #567eb9;
+  border-bottom: 1px solid #567eb9;
+}
+
+/* Adicionando logo do IME após todos títulos:  */
+h1::after {
+  margin-left: -100px;
+  position: absolute;
+  height: 33px;
+  width: 103px;
+  content: ' ';
+  left: 100%;
+  bottom: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  right: -50px;
+  background-image: url('images/logo.png');
+}
+
+/* Retirando o logo do IME da capa, utilizando a tag que botei nos títulos de lá: */
+#h1-capa {
+  border-bottom: none !important;
+  color: #fbfffd;
+  text-shadow: 2px 0 0 #6b6766;
+}
+
+#h1-capa::after {
+  background-image: none !important;
+}
+
+/* Alterando a capa: */
+.remark-slide-container .title-slide {
+  /* Mudando a cor e sombra do texto: */
+  color: #fbfffd;
+  text-shadow: 2px 0 0 #6b6766;
+  
+  /* Alterando a área utilizada: */
+  display: block;
+  height: 100%;
+  
+  /* Alterando o fundo: */
+  background: linear-gradient(-45deg, #48abff, #52a4f5, #599dec, #5f97e2, #6390d8, #5c84c9, #5678bb, #4f6cac, #3d5795, #2b447f, #183169, #001f54);
+  background-size: 400% 400%;
+  animation: gradientBG 7.5s ease infinite;
+}
+
+/* Definindo a animação que usei no fundo da capa: */
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* Forçando as posições dos textos na capa: */
+#texto-medio {
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+#texto-baixo {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+/* Alterando a fonte do corpo dos slides: */
+body {
+  font-family: 'Biryani', serif;
+  color: #001C30;
+}
+
+/* Alterando o slide de Git-Github: */
+.remark-slide-container .git-github {
+  background: linear-gradient(-45deg, #48abff, #52a4f5, #599dec, #5f97e2, #6390d8, #5c84c9, #5678bb, #4f6cac, #3d5795, #2b447f, #183169, #001f54);
+  background-size: 400% 400%;
+  animation: gradientBG 7.5s ease infinite;
+}
+
+#img-git {
+  position: absolute;
+  left: 15%;
+  top: 25%;
+}
+
+#img-github {
+  position: absolute;
+  right: 15%;
+  top: 25%;
+}
+

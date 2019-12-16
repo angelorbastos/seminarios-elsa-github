@@ -1,0 +1,159 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    css: ["chocolate-fonts", "styles.css"]
+    seal: false
+    includes:
+      in_header: fonts.html
+---
+
+class: center, middle, inverse, title-slide
+
+<p style = "font-family: Ubuntu Condensed; font-size: 28px;">Seminários ELSA - 2019/2</p>
+
+<h1 id="h1-capa" style = "font-family: Abel; top: 15%;">Projetos e Fluxo de Trabalho:<br>Git e Github</h1>
+
+<div id="texto-medio">
+  <h2 style = "font-family: Abel">Por: Angelo Rosa</h2>
+</div>
+
+<div id="texto-baixo">
+  <p style = "font-family: Ubuntu Condensed;">Atualizado em `r Sys.setlocale('LC_ALL', 'Portuguese_Brazil.1252'); format(Sys.Date(), format = '%d de %B de %Y')`</p>
+</div>
+
+---
+
+```{r prep, include=FALSE}
+# Opções do knitr/rmarkdown/xaringan:
+options(htmltools.dir.version = FALSE)
+
+# Libraries:
+ler_libs <- function(packages){
+  instalar <- packages[!(packages %in% installed.packages()[, "Package"])]
+  
+  if(length(instalar) > 0){
+    install.packages(pkgs = instalar, dependencies = TRUE)
+  }
+  invisible(sapply(packages, require, character.only = TRUE))
+}
+
+ler_libs(packages = c('plotly', 'DT'))
+
+# Bases de dados:
+
+```
+
+# Introdução
+
+Neste seminário, vamos discutir:
+
+- Gerenciamento dos códigos e atividades da equipe;
+
+- Uso de Git e Github e como se integram com SAS, R e Slack;
+
+- Possíveis implementações das ferramentas na **nossa** equipe.
+
+---
+
+# Problematização
+
+- Em qualquer projeto em equipe que envolva programação, pode ser difícil administrar os códigos e documentar as alterações;
+
+- Além disso, ao adotarmos funções criadas pela equipe, o controle de versionamento destas funções pode ser prolemático;
+
+- **Git** e **Github** são ferramentas que auxiliam tanto nestas questões quanto no gerenciamento da equipe;
+
+- Nos próximos *slides*, vamos contextualizar alguns problemas que estas ferramentas podem resolver.
+
+---
+
+# Programação Colaborativa
+
+- No projeto, é comum que várias pessoas trabalhem em um mesmo código, seja **simultaneamente** ou em **diferentes épocas**;
+
+- Adotamos algumas práticas ao trabalhar em códigos alheios, como:
+  + Criar um programa novo;
+  + Documentar as alterações e registrar quem realizou;
+
+- Mesmo assim, é comum termos problemas, principalmente quando o trabalho é simultâneo:
+  + Corrigir uma função significa modificar a chamada dela em todos os programas;
+  + Com duas pessoas trabalhando no mesmo código, é fácil de confundir as correções.
+
+---
+
+# Controle de Versionamento
+
+- Em geral, salvamos uma nova versão toda vez que fazemos alguma modificação grande num programa;
+
+- Hoje, adotamos um *header* com a data de última modificação e um `_&dataextra.` ao final dos nomes dos programas;
+
+- Cada alteração em geral é descrita em um comentário dentro do programa;
+
+- São métodos bons, mas temos ainda alguns problemas, por exemplo:
+  + Comparar uma versão com outra é muito trabalhoso;
+  + Muitas alterações não descrevem quem realizou ou quando.
+
+---
+
+# Gerenciamento da Equipe
+
+O **Github** também pode nos auxiliar a administrar as atividades da equipe:
+
+- Possui quadro *Kanban* para organização de tarefas;
+- Mantém histórico de modificações;
+- Fornece, para cada repositório, *insights* sobre as contribuições de cada pessoa, *branching* e mais;
+- Tem integração com o **SAS**, o **RStudio** e o **Slack** (discutiremos depois).
+
+---
+
+class: git-github
+
+<h1 id="h1-capa" style = "font-family: Abel; text-align: center;">Git e Github</h1>
+
+<i id = "img-git"><img src = "images/git-logo.png" height = 300px width = 300px></i>
+<i id = "img-github"><img src = "images/github-logo.png" height = 300px width = 300px></i>
+
+---
+
+# Git
+
+
+
+---
+
+# Github
+
+---
+
+# Palavras-chave
+
+---
+
+# Comandos
+
+---
+
+# Github para Slack
+
+---
+
+# Git no SAS
+
+---
+
+# Git no RStudio
+
+---
+
+# Agradecimentos
+
+---
+
+# Referências
+
+- Git no SAS: [Using built-in Git operations in SAS](https://blogs.sas.com/content/sasdummy/2019/01/17/git-in-sas/)
